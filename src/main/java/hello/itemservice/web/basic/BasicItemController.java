@@ -72,12 +72,20 @@ public class BasicItemController {
 //        return "basic/item";
 //    }
 
+//    @PostMapping("/add")
+//    public String addItem4(Item item) {
+//        //ModelAttribute도 생략이 가능하다
+//        itemRepository.save(item);
+//        return "basic/item";
+//    }
+
     @PostMapping("/add")
-    public String addItem4(Item item) {
-        //ModelAttribute도 생략이 가능하다
+    public String addItem5(Item item) {
         itemRepository.save(item);
-        return "basic/item";
+        //url 인코딩이 안될 수 있어서 매우 위험한 방식이다 -> redirectAttribute를 활용
+        return "redirect:/basic/items/" + item.getId();
     }
+
 
     @GetMapping("/{itemId}/edit")
     public String editForm(@PathVariable Long itemId, Model model) {
